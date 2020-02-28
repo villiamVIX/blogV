@@ -229,6 +229,134 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/28/%E5%81%A5%E8%BA%AB%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%B8%B8%E5%9D%91/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/28/%E5%81%A5%E8%BA%AB%E7%B3%BB%E7%BB%9F%E6%97%A5%E5%B8%B8%E5%9D%91/" itemprop="url">健身系统日常坑</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-28T23:34:12+08:00">
+                2020-02-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="1-VUE中监听输入框对焦"><a href="#1-VUE中监听输入框对焦" class="headerlink" title="1.VUE中监听输入框对焦"></a>1.VUE中监听输入框对焦</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$   &lt;textaera @focus=<span class="string">'方法1'</span> @blur=<span class="string">'方法2'</span>&gt;...</span><br><span class="line">$   &lt;script&gt;</span><br><span class="line">$           监听 方法1/2</span><br><span class="line">$	&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="2-取消移动端输入框-按钮默认样式"><a href="#2-取消移动端输入框-按钮默认样式" class="headerlink" title="2.取消移动端输入框/按钮默认样式"></a>2.取消移动端输入框/按钮默认样式</h3><p>直接加载app.js上</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$   -webkit-appearance: none;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-全局变量"><a href="#3-全局变量" class="headerlink" title="3.全局变量"></a>3.全局变量</h3><h4 id="因为接口的域名在上云后需要变动，在数据库中修改又麻烦，干脆后台在传图片地址的时候-只返回-除了域名的后半段路径"><a href="#因为接口的域名在上云后需要变动，在数据库中修改又麻烦，干脆后台在传图片地址的时候-只返回-除了域名的后半段路径" class="headerlink" title="因为接口的域名在上云后需要变动，在数据库中修改又麻烦，干脆后台在传图片地址的时候 只返回[除了域名的后半段路径]"></a>因为接口的域名在上云后需要变动，在数据库中修改又麻烦，干脆后台在传图片地址的时候 只返回[除了域名的后半段路径]</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="string">'http://192.168.1.104:3008/user/adb/ccd'</span> ==&gt; <span class="string">'/user/abd/ccd'</span></span><br><span class="line">   前半段在前端的全局变量中保存好如下 </span><br><span class="line">$  <span class="comment">#本地调试</span></span><br><span class="line">  const baseUrl = <span class="string">'http://192.168.1.104:3008'</span></span><br><span class="line"><span class="comment">#上云</span></span><br><span class="line">  const baseUrl= <span class="string">'http://106.53.7.24:3008'</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="如何设置全局变量"><a href="#如何设置全局变量" class="headerlink" title="如何设置全局变量"></a>如何设置全局变量</h4><p> $ 在有网络请求的文件夹下新建=&gt;global.vue</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">global.vue中</span><br><span class="line">      &lt;script&gt;</span><br><span class="line">      	<span class="comment">#本地调试</span></span><br><span class="line">      	  const baseUrl = <span class="string">'http://192.168.1.104:3008'</span></span><br><span class="line">      	<span class="comment">#上云</span></span><br><span class="line">      	  const baseUrl= <span class="string">'http://106.53.7.24:3008'</span>  </span><br><span class="line">          <span class="built_in">export</span> default &#123;  <span class="comment">#导出</span></span><br><span class="line">          	baseUrl</span><br><span class="line">          &#125;</span><br><span class="line">      &lt;/script&gt;</span><br><span class="line">-------	</span><br><span class="line">main.js中 将global加入原型链上</span><br><span class="line">	  import Global_ from <span class="string">'./network/Global'</span>  <span class="comment">#全局变量</span></span><br><span class="line">	  </span><br><span class="line">	  Vue.prototype.GLOBAL = Global_          <span class="comment">#挂载到Vue实例上面</span></span><br><span class="line">------	  </span><br><span class="line">在项目data中</span><br><span class="line"></span><br><span class="line">      baseUrl: this.GLOBAL.baseUrl,</span><br><span class="line">	  </span><br><span class="line">	  &lt;img :src=<span class="string">'baseUrl+item.img'</span>&gt; .....各种地方使用</span><br></pre></td></tr></table></figure>
+<p> $ 酱紫 要是接口变了 改一下baseUrl就行  一个一个去找去改太累</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/28/%E5%B7%B2%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -670,6 +798,8 @@
         
           
             <h2 id="1-第一次搭建hexo"><a href="#1-第一次搭建hexo" class="headerlink" title="1.第一次搭建hexo"></a>1.第一次搭建hexo</h2><h3 id="需要环境与必要安装：node-js、git-shell"><a href="#需要环境与必要安装：node-js、git-shell" class="headerlink" title="需要环境与必要安装：node.js、git shell"></a>需要环境与必要安装：node.js、git shell</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">2.注意：&#123;</span><br><span class="line">	config.yml中冒号后必须空格；</span><br><span class="line">	git上博客仓库名称==git名称 ，这样git push的时候才能直接用  git名.github.io访问博客</span><br><span class="line">	---</span><br><span class="line">	$ 流程 ：&#123;</span><br><span class="line">		npm i npm install -g hexo <span class="comment">#安装</span></span><br><span class="line">		<span class="built_in">cd</span>                        <span class="comment">#hexo文件夹</span></span><br><span class="line">		hexo init                 <span class="comment">#初始化</span></span><br><span class="line">		</span><br><span class="line">		发布&amp;展示：&#123;</span><br><span class="line">		    hexo clean                <span class="comment">#清除缓存db.json和删除原来的静态pubilc ，主题异常可用</span></span><br><span class="line">		    hexo generate =&gt;&#123;         <span class="comment">#生成新的静态文件</span></span><br><span class="line">		        	-d                <span class="comment">#生成后自动上传</span></span><br><span class="line">		        &#125;           </span><br><span class="line">		    hexo deploy               <span class="comment">#上传到git..或者coding 具体看cfg.yml里的repo配置</span></span><br><span class="line">		    hexo server               <span class="comment">#开启本地端口 默认4000</span></span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">	$ 配置 ：&#123;</span><br><span class="line">		(_config.yml)所有的:后都要空一格在写内容</span><br><span class="line">		</span><br><span class="line">		(_config.yml)=&gt;(themes):&#123;</span><br><span class="line">			主题下载好 将主题名写入即可</span><br><span class="line">		&#125;</span><br><span class="line">		</span><br><span class="line">		(_config.yml)=&gt;(deploy)=&gt;(repo)：&#123;        <span class="comment">#上传配置</span></span><br><span class="line">			<span class="built_in">type</span>: git</span><br><span class="line">			repo: git仓SSH码，master               <span class="comment">#master=&gt;上传到这个分支（*git仓库名===git名称）</span></span><br><span class="line">		&#125;</span><br><span class="line">					  </span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="2-hexo引入图片"><a href="#2-hexo引入图片" class="headerlink" title="2.hexo引入图片"></a>2.hexo引入图片</h2><h3 id="必要npm-i-hexo-asset-image-s"><a href="#必要npm-i-hexo-asset-image-s" class="headerlink" title="必要npm i hexo-asset-image -s"></a>必要npm i hexo-asset-image -s</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line">$ (_config.yml)=&gt;post_asset_folder=&gt;<span class="literal">true</span></span><br><span class="line"></span><br><span class="line">若还无效</span><br><span class="line">在node_modules中改 上述插件源码：</span><br><span class="line"> <span class="string">'use strict'</span>;</span><br><span class="line">var cheerio = require(<span class="string">'cheerio'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">function</span> getPosition(str, m, i) &#123;</span><br><span class="line">  <span class="built_in">return</span> str.split(m, i).join(m).length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">hexo.extend.filter.register(<span class="string">'after_post_render'</span>, <span class="keyword">function</span>(data)&#123;</span><br><span class="line">  var config = hexo.config;</span><br><span class="line">  <span class="keyword">if</span>(config.post_asset_folder)&#123;</span><br><span class="line">    var link = data.permalink;</span><br><span class="line">    var beginPos = getPosition(link, <span class="string">'/'</span>, 3) + 1;</span><br><span class="line">    // In hexo 3.1.1, the permalink of <span class="string">"about"</span> page is like <span class="string">".../about/index.html"</span>.</span><br><span class="line">    var endPos = link.lastIndexOf(<span class="string">'/'</span>) + 1;</span><br><span class="line">    link = link.substring(beginPos, endPos);</span><br><span class="line"></span><br><span class="line">    var toprocess = [<span class="string">'excerpt'</span>, <span class="string">'more'</span>, <span class="string">'content'</span>];</span><br><span class="line">    <span class="keyword">for</span>(var i = 0; i &lt; toprocess.length; i++)&#123;</span><br><span class="line">      var key = toprocess[i];</span><br><span class="line"></span><br><span class="line">      var $ = cheerio.load(data[key], &#123;</span><br><span class="line">        ignoreWhitespace: <span class="literal">false</span>,</span><br><span class="line">        xmlMode: <span class="literal">false</span>,</span><br><span class="line">        lowerCaseTags: <span class="literal">false</span>,</span><br><span class="line">        decodeEntities: <span class="literal">false</span></span><br><span class="line">      &#125;);</span><br><span class="line"></span><br><span class="line">      $(<span class="string">'img'</span>).each(<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">        <span class="keyword">if</span> ($(this).attr(<span class="string">'src'</span>))&#123;</span><br><span class="line">            // For windows style path, we replace <span class="string">'\'</span> to <span class="string">'/'</span>.</span><br><span class="line">            var src = $(this).attr(<span class="string">'src'</span>).replace(<span class="string">'\\'</span>, <span class="string">'/'</span>);</span><br><span class="line">            <span class="keyword">if</span>(!/http[s]*.*|\/\/.*/.<span class="built_in">test</span>(src) &amp;&amp;</span><br><span class="line">               !/^\s*\//.<span class="built_in">test</span>(src)) &#123;</span><br><span class="line">              // For <span class="string">"about"</span> page, the first part of <span class="string">"src"</span> can<span class="string">'t be removed.</span></span><br><span class="line"><span class="string">              // In addition, to support multi-level local directory.</span></span><br><span class="line"><span class="string">              var linkArray = link.split('</span>/<span class="string">').filter(function(elem)&#123;</span></span><br><span class="line"><span class="string">                return elem != '</span><span class="string">';</span></span><br><span class="line"><span class="string">              &#125;);</span></span><br><span class="line"><span class="string">              var srcArray = src.split('</span>/<span class="string">').filter(function(elem)&#123;</span></span><br><span class="line"><span class="string">                return elem != '</span><span class="string">' &amp;&amp; elem != '</span>.<span class="string">';</span></span><br><span class="line"><span class="string">              &#125;);</span></span><br><span class="line"><span class="string">              if(srcArray.length &gt; 1)</span></span><br><span class="line"><span class="string">                srcArray.shift();</span></span><br><span class="line"><span class="string">              src = srcArray.join('</span>/<span class="string">');</span></span><br><span class="line"><span class="string">              $(this).attr('</span>src<span class="string">', config.root + link + src);</span></span><br><span class="line"><span class="string">              console.info&amp;&amp;console.info("update link as:--&gt;"+config.root + link + src);</span></span><br><span class="line"><span class="string">            &#125;</span></span><br><span class="line"><span class="string">        &#125;else&#123;</span></span><br><span class="line"><span class="string">            console.info&amp;&amp;console.info("no src attr, skipped...");</span></span><br><span class="line"><span class="string">            console.info&amp;&amp;console.info($(this));</span></span><br><span class="line"><span class="string">        &#125;</span></span><br><span class="line"><span class="string">      &#125;);</span></span><br><span class="line"><span class="string">      data[key] = $.html();</span></span><br><span class="line"><span class="string">    &#125;</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;);</span></span><br></pre></td></tr></table></figure>
+
 
 
 
@@ -886,7 +1016,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">5</span>
+                  <span class="site-state-item-count">6</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
