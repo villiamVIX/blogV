@@ -229,6 +229,251 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/27/%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F-%E5%86%92%E6%B3%A1%E5%A4%84%E7%90%86/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/27/%E5%85%A8%E5%B1%80%E5%8F%98%E9%87%8F-%E5%86%92%E6%B3%A1%E5%A4%84%E7%90%86/" itemprop="url">全局变量/冒泡处理</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-27T23:29:23+08:00">
+                2020-02-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="1-全局变量"><a href="#1-全局变量" class="headerlink" title="1.全局变量"></a>1.全局变量</h2><h3 id="因为接口的域名在上云后需要变动，在数据库中修改又麻烦，干脆后台在传图片地址的时候-只返回-除了域名的后半段路径"><a href="#因为接口的域名在上云后需要变动，在数据库中修改又麻烦，干脆后台在传图片地址的时候-只返回-除了域名的后半段路径" class="headerlink" title="因为接口的域名在上云后需要变动，在数据库中修改又麻烦，干脆后台在传图片地址的时候 只返回[除了域名的后半段路径]"></a>因为接口的域名在上云后需要变动，在数据库中修改又麻烦，干脆后台在传图片地址的时候 只返回[除了域名的后半段路径]</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="string">'http://192.168.1.104:3008/user/adb/ccd'</span> ==&gt; <span class="string">'/user/abd/ccd'</span></span><br><span class="line">   前半段在前端的全局变量中保存好如下 </span><br><span class="line">$  <span class="comment">#本地调试</span></span><br><span class="line">  const baseUrl = <span class="string">'http://192.168.1.104:3008'</span></span><br><span class="line"><span class="comment">#上云</span></span><br><span class="line">  const baseUrl= <span class="string">'http://106.53.7.24:3008'</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="如何设置全局变量"><a href="#如何设置全局变量" class="headerlink" title="如何设置全局变量"></a>如何设置全局变量</h3><p> $ 在有网络请求的文件夹下新建=&gt;global.vue</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">global.vue中</span><br><span class="line">      &lt;script&gt;</span><br><span class="line">      	<span class="comment">#本地调试</span></span><br><span class="line">      	  const baseUrl = <span class="string">'http://192.168.1.104:3008'</span></span><br><span class="line">      	<span class="comment">#上云</span></span><br><span class="line">      	  const baseUrl= <span class="string">'http://106.53.7.24:3008'</span>  </span><br><span class="line">          <span class="built_in">export</span> default &#123;  <span class="comment">#导出</span></span><br><span class="line">          	baseUrl</span><br><span class="line">          &#125;</span><br><span class="line">      &lt;/script&gt;</span><br><span class="line">-------	</span><br><span class="line">main.js中 将global加入原型链上</span><br><span class="line">	  import Global_ from <span class="string">'./network/Global'</span>  <span class="comment">#全局变量</span></span><br><span class="line">	  </span><br><span class="line">	  Vue.prototype.GLOBAL = Global_          <span class="comment">#挂载到Vue实例上面</span></span><br><span class="line">------	  </span><br><span class="line">在项目data中</span><br><span class="line"></span><br><span class="line">      baseUrl: this.GLOBAL.baseUrl,</span><br><span class="line">	  </span><br><span class="line">	  &lt;img :src=<span class="string">'baseUrl+item.img'</span>&gt; .....各种地方使用</span><br></pre></td></tr></table></figure>
+<p> $ 酱紫 要是接口变了 改一下baseUrl就行  一个一个去找去改太累</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/27/Nginx%E9%85%8D%E7%BD%AE404%E9%A1%B5%E9%9D%A2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/02/27/Nginx%E9%85%8D%E7%BD%AE404%E9%A1%B5%E9%9D%A2/" itemprop="url">Nginx配置404页面</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-02-27T12:21:15+08:00">
+                2020-02-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="开启代理错误拦截功能"><a href="#开启代理错误拦截功能" class="headerlink" title="开启代理错误拦截功能"></a>开启代理错误拦截功能</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$   (nginx)=&gt;(conf)=&gt;nginx.conf:&#123;</span><br><span class="line">	http:&#123;</span><br><span class="line">		....</span><br><span class="line">        proxy_intercept_errors on; </span><br><span class="line">	   	server:&#123;</span><br><span class="line">	   		....</span><br><span class="line">	   	  &#125;</span><br><span class="line">	    &#125;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="添加404-405-406-505-定义错误页面码，出现相应的错误页面码转发路径。"><a href="#添加404-405-406-505-定义错误页面码，出现相应的错误页面码转发路径。" class="headerlink" title="添加404 405 406 505 定义错误页面码，出现相应的错误页面码转发路径。"></a>添加404 405 406 505 定义错误页面码，出现相应的错误页面码转发路径。</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$   (nginx)=&gt;(conf)=&gt;nginx.conf:&#123;</span><br><span class="line">	http:&#123;</span><br><span class="line">		error_page  404 403 500 502 503 504  /404.html;</span><br><span class="line">		</span><br><span class="line">		<span class="comment"># 承接上面的location。</span></span><br><span class="line">		</span><br><span class="line">		location = /404.html &#123;</span><br><span class="line">		</span><br><span class="line">		<span class="comment"># 放错误页面的目录路径。</span></span><br><span class="line">		</span><br><span class="line">		root   err;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/02/26/%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -517,7 +762,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">2</span>
+                  <span class="site-state-item-count">4</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
