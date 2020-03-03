@@ -229,6 +229,125 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/03/mongoose%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/03/mongoose%E6%93%8D%E4%BD%9C/" itemprop="url">mongoose操作</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-03T15:04:27+08:00">
+                2020-03-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/01/%E9%9D%A2%E8%AF%95%E9%A2%98/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -300,7 +419,20 @@
       
         
           
-            <h3 id="1-const-let-var的区别"><a href="#1-const-let-var的区别" class="headerlink" title="1.const/let/var的区别"></a>1.const/let/var的区别</h3><h5 id="const-let-gt-不会挂载在window上"><a href="#const-let-gt-不会挂载在window上" class="headerlink" title="(const/let) ==&gt;不会挂载在window上"></a>(const/let) ==&gt;不会挂载在window上</h5><h5 id="var-gt-挂载在window上"><a href="#var-gt-挂载在window上" class="headerlink" title="var         ==&gt;挂载在window上"></a>var         ==&gt;挂载在window上</h5><h5 id="上述window是BOM的属性"><a href="#上述window是BOM的属性" class="headerlink" title="上述window是BOM的属性"></a>上述window是BOM的属性</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$    var a=100;</span><br><span class="line">     console.log(a,window.a)  // 100,100</span><br><span class="line">$    var a=77;</span><br><span class="line">     console.log(a,window.a)  // 100,100</span><br><span class="line">$    var a=100;</span><br><span class="line">     console.log(a,window.a)  // 100,100</span><br></pre></td></tr></table></figure>
+            <h2 id="1-const-let-var的区别"><a href="#1-const-let-var的区别" class="headerlink" title="1.const/let/var的区别"></a>1.const/let/var的区别</h2><h3 id="1-const-let-不会挂载在window上-var-会挂载在window上"><a href="#1-const-let-不会挂载在window上-var-会挂载在window上" class="headerlink" title="(1).(const/let) 不会挂载在window上 || (var) 会挂载在window上"></a>(1).(const/let) 不会挂载在window上 || (var) 会挂载在window上</h3><p>上述window是BOM的属性</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$    var a=100;</span><br><span class="line">     console.log(a,window.a)  // 100,100</span><br><span class="line">$    const a=77;</span><br><span class="line">     console.log(a,window.a)  // 100,100</span><br><span class="line">$    <span class="built_in">let</span> a=100;</span><br><span class="line">     console.log(a,window.a)  // 100,100</span><br></pre></td></tr></table></figure>
+
+<h3 id="2-const-let-不预先声明-var-会预先声明"><a href="#2-const-let-不预先声明-var-会预先声明" class="headerlink" title="(2).(const/let) 不预先声明 || (var) 会预先声明"></a>(2).(const/let) 不预先声明 || (var) 会预先声明</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$   console.log(a); // undefined  ===&gt;  a已声明还没赋值，默认得到undefined值</span><br><span class="line">    var a = 100;</span><br><span class="line">$   console.log(b); // 报错：b is not defined  ===&gt; 找不到b这个变量</span><br><span class="line">    <span class="built_in">let</span> b = 10;</span><br><span class="line">$   console.log(c); // 报错：c is not defined  ===&gt; 找不到c这个变量</span><br><span class="line">    const c = 10;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3-const-let-只在作用域内声明-var-作用域外也可获得"><a href="#3-const-let-只在作用域内声明-var-作用域外也可获得" class="headerlink" title="(3).(const/let) 只在作用域内声明 || (var) 作用域外也可获得"></a>(3).(const/let) 只在作用域内声明 || (var) 作用域外也可获得</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$  <span class="keyword">if</span>(1)&#123;</span><br><span class="line">        var a = 100;</span><br><span class="line">        <span class="built_in">let</span> b = 10;</span><br><span class="line">    	const c = 77</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">$   console.log(a); // 100</span><br><span class="line">    console.log(b)  // 报错：b is not defined  ===&gt; 找不到b这个变量</span><br><span class="line">    console.log(c)  // 同上</span><br></pre></td></tr></table></figure>
+
+<h3 id="4-const-let-同作用域下不可二次声明-var-二次声明-gt-覆盖"><a href="#4-const-let-同作用域下不可二次声明-var-二次声明-gt-覆盖" class="headerlink" title="(4).(const/let) 同作用域下不可二次声明 || (var) 二次声明=&gt;覆盖"></a>(4).(const/let) 同作用域下不可二次声明 || (var) 二次声明=&gt;覆盖</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$  <span class="built_in">let</span> a = 100;</span><br><span class="line">   <span class="built_in">let</span> a = 10;</span><br><span class="line">   </span><br><span class="line">   //  控制台报错：Identifier <span class="string">'a'</span> has already been declared  ===&gt; 标识符a已经被声明了</span><br></pre></td></tr></table></figure>
+
+<h3 id="5-const-声明了必须赋值、声明后非复合型数据类型不可以修改属性-Var-Let-不必立刻赋值"><a href="#5-const-声明了必须赋值、声明后非复合型数据类型不可以修改属性-Var-Let-不必立刻赋值" class="headerlink" title="(5).(const) 声明了必须赋值、声明后非复合型数据类型不可以修改属性|| (Var/Let)不必立刻赋值"></a>(5).(const) 声明了必须赋值、声明后非复合型数据类型不可以修改属性|| (Var/Let)不必立刻赋值</h3><p>①声明必须赋值</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ const d</span><br><span class="line">  //Uncaught SyntaxError: Missing initializer <span class="keyword">in</span> const declaration</span><br><span class="line">  报错 迷失const声明中的初始值设定项</span><br></pre></td></tr></table></figure>
+
+<p>②若定义的是复合数据类型=&gt; {}/[]可以修改里面的值，</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">$ const array=[]</span><br><span class="line">  array[0]=000 </span><br><span class="line">$ const Obj=&#123;&#125;</span><br><span class="line">  obj.i=<span class="string">'mis u'</span> </span><br><span class="line">**********************  ↑OK ↓ !OK </span><br><span class="line">   因为names 指向的地址改变 变成[1,2] 不是[],应如上始终指向同一个地址</span><br><span class="line">  $ const names = []; </span><br><span class="line">    names = [1,2]  </span><br><span class="line">    //地址发生改变 报错</span><br><span class="line">**********************  ↓ !OK				  </span><br><span class="line">$ const string=<span class="string">'kennyS'</span></span><br><span class="line">  string = <span class="string">'fallen'</span></span><br></pre></td></tr></table></figure>
           
         
       
@@ -1011,7 +1143,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">6</span>
+                  <span class="site-state-item-count">7</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
