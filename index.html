@@ -300,7 +300,20 @@
       
         
           
-            
+            <h3 id="1-update-方法更新数据"><a href="#1-update-方法更新数据" class="headerlink" title="1.(update)方法更新数据"></a>1.(update)方法更新数据</h3><h4 id="updata–快被移除的方法，但仍然可以使用，官方建议"><a href="#updata–快被移除的方法，但仍然可以使用，官方建议" class="headerlink" title="updata–快被移除的方法，但仍然可以使用，官方建议"></a>updata–快被移除的方法，但仍然可以使用，官方建议</h4><h4 id="Use-updateOne-updateMany-or-bulkWrite-替代"><a href="#Use-updateOne-updateMany-or-bulkWrite-替代" class="headerlink" title="Use (updateOne,updateMany, or bulkWrite) 替代."></a>Use (updateOne,updateMany, or bulkWrite) 替代.</h4><p>(1). $inc数字操作符，若指定字段不存在，inc方法会创建并赋在值=&gt;（参数可+/-）</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">   <span class="comment">#或updateOne  #用id找   #更新id内的参数     #内嵌属性用"包住"</span></span><br><span class="line">news.update  (&#123;id:_id&#125;,&#123;<span class="variable">$inc</span>:&#123; floor:1  ,  <span class="string">"comment.floor"</span>:1&#125; &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>(2). $push插入操作,插入对象必是数组;若无会新建一个;插入时不考虑重复问题</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">news.update(&#123;id:_id&#125;,&#123;<span class="variable">$push</span>:&#123;comment:data&#125;&#125;)</span><br></pre></td></tr></table></figure>
+
+<p>(3). $addToSet插入操作,(基本同上),但可以避免重复,若重复就不插入了</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">news.update(&#123;id:_id&#125;,&#123;<span class="variable">$addToSet</span>:&#123;comment:data&#125;&#125;)</span><br><span class="line"><span class="comment">#res=&gt;若data相同，结果不变</span></span><br></pre></td></tr></table></figure>
+
+<p>(4). $pull删除操作</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">                                 <span class="comment">#删除comment的楼层为1的数据</span></span><br><span class="line">News.updateOne(&#123;_id:id&#125;,&#123;<span class="variable">$pull</span>:&#123;<span class="string">"reply.comment"</span>:&#123;floor:1&#125;</span><br></pre></td></tr></table></figure>
+<p>…  碰到用上了再记下去</p>
+<h3 id="2-Schema模型在数据操作时非常重要"><a href="#2-Schema模型在数据操作时非常重要" class="headerlink" title="2.Schema模型在数据操作时非常重要"></a>2.Schema模型在数据操作时非常重要</h3><h4 id="若数据都放在一个数组是可以读取到整数组，但数组内的对象的属性若没有在Schema内记录类型则在find查找出来的返回值是undefined！"><a href="#若数据都放在一个数组是可以读取到整数组，但数组内的对象的属性若没有在Schema内记录类型则在find查找出来的返回值是undefined！" class="headerlink" title="若数据都放在一个数组是可以读取到整数组，但数组内的对象的属性若没有在Schema内记录类型则在find查找出来的返回值是undefined！"></a>若数据都放在一个数组是可以读取到整数组，但数组内的对象的属性若没有在Schema内记录类型则在find查找出来的返回值是undefined！</h4><h6 id="5小时的弱智坑"><a href="#5小时的弱智坑" class="headerlink" title="5小时的弱智坑"></a>5小时的弱智坑</h6><p><img src="/2020/03/03/mongoose%E6%93%8D%E4%BD%9C/Schema.jpg" alt="Schema"></p>
+
           
         
       
