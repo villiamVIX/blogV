@@ -229,6 +229,129 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/10/%E7%96%AB%E6%83%85%E5%9C%B0%E5%9B%BE%E5%92%8C%E7%88%AC%E5%8F%96%E6%95%B0%E6%8D%AE/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/03/10/%E7%96%AB%E6%83%85%E5%9C%B0%E5%9B%BE%E5%92%8C%E7%88%AC%E5%8F%96%E6%95%B0%E6%8D%AE/" itemprop="url">疫情地图和爬取数据</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-03-10T23:26:16+08:00">
+                2020-03-10
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h3 id="node-js爬取数据"><a href="#node-js爬取数据" class="headerlink" title="node.js爬取数据"></a>node.js爬取数据</h3><h4 id="需要模块：request、fs、cheerio、path"><a href="#需要模块：request、fs、cheerio、path" class="headerlink" title="需要模块：request、fs、cheerio、path"></a>需要模块：request、fs、cheerio、path</h4><p>request：用于发起网络请求<br>fs：操作文件<br>cheerio： 专注jq的dom操作<br>path：方便拼接路径</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#被爬网站 -丁香园疫情数据</span></span><br><span class="line">requests(<span class="string">'https://ncov.dxy.cn/ncovh5/view/pneumonia'</span>, )</span><br><span class="line">.on(<span class="string">'data'</span>, <span class="keyword">function</span> (chunk) &#123;</span><br><span class="line">  <span class="comment">#node中没有window 自己创一个 因为数据里有window.dataset...</span></span><br><span class="line">  <span class="built_in">let</span> window=&#123;&#125; </span><br><span class="line">  <span class="comment">#类似JQ把整个html赋值给$</span></span><br><span class="line">  const $=cheerio.load(chunk)</span><br><span class="line">  <span class="variable">$eval</span>把这个id转为html</span><br><span class="line">  <span class="built_in">let</span> ck=<span class="built_in">eval</span>($(<span class="string">'#getAreaStat'</span>).html())</span><br><span class="line">  <span class="comment">#fs文件操作模块  path.join 拼接当前路径下的a文件夹，保存进data.json文件</span></span><br><span class="line">  fs.writeFile(path.join(__dirname,<span class="string">'a'</span>,<span class="string">'data.json'</span>),</span><br><span class="line">  <span class="comment">#转为json 不然看到的是obj</span></span><br><span class="line">  JSON.stringify(ck),()=&gt;&#123;</span><br><span class="line">	  console.log(<span class="string">'爬取成功'</span>)</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+<h3 id="echart-图表插件"><a href="#echart-图表插件" class="headerlink" title="echart 图表插件"></a>echart 图表插件</h3><h4 id="需要地图-js在git上的完整版-map就行"><a href="#需要地图-js在git上的完整版-map就行" class="headerlink" title="需要地图.js在git上的完整版/map就行"></a>需要地图.js在git上的完整版/map就行</h4><p>具体api看官网</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"main"</span> <span class="attr">style</span>=<span class="string">"margin: 0 auto;width: 55.25rem; height: 35rem;border: 1px solid royalblue;"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="actionscript"><span class="comment">// 先给echart初始化 找main放入</span></span></span><br><span class="line"><span class="javascript"><span class="keyword">var</span> mychart = echarts.init(<span class="built_in">document</span>.getElementById(<span class="string">'main'</span>))</span></span><br><span class="line"></span><br><span class="line"><span class="actionscript"><span class="keyword">var</span> option = &#123;</span></span><br><span class="line"><span class="actionscript">	<span class="comment">//标注</span></span></span><br><span class="line">	visualMap:&#123;&#125;,</span><br><span class="line">	title:&#123;</span><br><span class="line"><span class="actionscript">	<span class="comment">//上标题</span></span></span><br><span class="line"><span class="actionscript">		text:<span class="string">'疫情地图'</span>,</span></span><br><span class="line"><span class="actionscript">	<span class="comment">//小标名	</span></span></span><br><span class="line"><span class="actionscript">		subtext:<span class="string">'@villiam'</span>,</span></span><br><span class="line"><span class="actionscript">		left:<span class="string">'center'</span>,</span></span><br><span class="line">		textStyle:&#123;</span><br><span class="line">			fontSize:33</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;,</span><br><span class="line"><span class="actionscript">	<span class="comment">//图例</span></span></span><br><span class="line">	legend:&#123;</span><br><span class="line">		bottom:0</span><br><span class="line">	&#125;,</span><br><span class="line"><span class="actionscript">	<span class="comment">// HOVER的提示</span></span></span><br><span class="line">	tooltip:&#123;&#125;,</span><br><span class="line"><span class="actionscript">	<span class="comment">//图的类型</span></span></span><br><span class="line">	series: [&#123;</span><br><span class="line"><span class="actionscript">		<span class="comment">//取消途中的小点</span></span></span><br><span class="line"><span class="actionscript">		showLegendSymbol: <span class="literal">false</span>,</span></span><br><span class="line"><span class="actionscript">			type: <span class="string">'map'</span>,</span></span><br><span class="line"><span class="actionscript">			name:<span class="string">''</span>,</span></span><br><span class="line"><span class="actionscript">			map:<span class="string">'china'</span>,</span></span><br><span class="line"><span class="actionscript">		    roam:<span class="literal">true</span>, <span class="comment">//开启全局缩放平移</span></span></span><br><span class="line">			data：[&#123;</span><br><span class="line"><span class="actionscript">			 	name:<span class="string">'湖南'</span>,</span></span><br><span class="line">			 	value:111</span><br><span class="line">			 &#125;]</span><br><span class="line">		&#125;,</span><br><span class="line">	],</span><br><span class="line">	</span><br><span class="line">&#125;;</span><br><span class="line"><span class="actionscript"><span class="comment">// 3.渲染</span></span></span><br><span class="line">mychart.setOption(option)</span><br><span class="line"><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/03/mongoose%E6%93%8D%E4%BD%9C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -312,7 +435,7 @@
 <p>(4). $pull删除操作</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">                                 <span class="comment">#删除comment的楼层为1的数据</span></span><br><span class="line">News.updateOne(&#123;_id:id&#125;,&#123;<span class="variable">$pull</span>:&#123;<span class="string">"reply.comment"</span>:&#123;floor:1&#125;</span><br></pre></td></tr></table></figure>
 <p>…  碰到用上了再记下去</p>
-<h3 id="2-Schema模型在数据操作时非常重要"><a href="#2-Schema模型在数据操作时非常重要" class="headerlink" title="2.Schema模型在数据操作时非常重要"></a>2.Schema模型在数据操作时非常重要</h3><h4 id="若数据都放在一个数组是可以读取到整数组，但数组内的对象的属性若没有在Schema内记录类型则在find查找出来的返回值是undefined！"><a href="#若数据都放在一个数组是可以读取到整数组，但数组内的对象的属性若没有在Schema内记录类型则在find查找出来的返回值是undefined！" class="headerlink" title="若数据都放在一个数组是可以读取到整数组，但数组内的对象的属性若没有在Schema内记录类型则在find查找出来的返回值是undefined！"></a>若数据都放在一个数组是可以读取到整数组，但数组内的对象的属性若没有在Schema内记录类型则在find查找出来的返回值是undefined！</h4><h6 id="5小时的弱智坑"><a href="#5小时的弱智坑" class="headerlink" title="5小时的弱智坑"></a>5小时的弱智坑</h6><p><img src="/2020/03/03/mongoose%E6%93%8D%E4%BD%9C/Schema.jpg" alt="Schema"></p>
+<h3 id="2-Schema模型在数据操作时非常重要"><a href="#2-Schema模型在数据操作时非常重要" class="headerlink" title="2.Schema模型在数据操作时非常重要"></a>2.Schema模型在数据操作时非常重要</h3><h4 id="若数据都放在一个数组是可以读取到整数组，但数组内的对象的属性若没有在Schema内记录类型则在find查找出来的返回值是undefined！"><a href="#若数据都放在一个数组是可以读取到整数组，但数组内的对象的属性若没有在Schema内记录类型则在find查找出来的返回值是undefined！" class="headerlink" title="若数据都放在一个数组是可以读取到整数组，但数组内的对象的属性若没有在Schema内记录类型则在find查找出来的返回值是undefined！"></a>若数据都放在一个数组是可以读取到整数组，但数组内的对象的属性若没有在Schema内记录类型则在find查找出来的返回值是undefined！</h4><h6 id="5小时的弱智坑"><a href="#5小时的弱智坑" class="headerlink" title="5小时的弱智坑"></a>5小时的弱智坑</h6><p><img src="/2020/03/03/mongoose%E6%93%8D%E4%BD%9C/Schema.png" alt="Schema"></p>
 
           
         
@@ -564,29 +687,32 @@
       
         
           
-            <h3 id="1-VUE中监听输入框对焦"><a href="#1-VUE中监听输入框对焦" class="headerlink" title="1.VUE中监听输入框对焦"></a>1.VUE中监听输入框对焦</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$   &lt;textaera @focus=<span class="string">'方法1'</span> @blur=<span class="string">'方法2'</span>&gt;...</span><br><span class="line">$   &lt;script&gt;</span><br><span class="line">$           监听 方法1/2</span><br><span class="line">$	&lt;/script&gt;</span><br></pre></td></tr></table></figure>
-<h3 id="2-取消移动端输入框-按钮默认样式"><a href="#2-取消移动端输入框-按钮默认样式" class="headerlink" title="2.取消移动端输入框/按钮默认样式"></a>2.取消移动端输入框/按钮默认样式</h3><p>直接加载app.js上</p>
+            <h3 id="VUE中监听输入框对焦"><a href="#VUE中监听输入框对焦" class="headerlink" title="VUE中监听输入框对焦"></a>VUE中监听输入框对焦</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$   &lt;textaera @focus=<span class="string">'方法1'</span> @blur=<span class="string">'方法2'</span>&gt;...</span><br><span class="line">$   &lt;script&gt;</span><br><span class="line">$           监听 方法1/2</span><br><span class="line">$	&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<h3 id="取消移动端输入框-按钮默认样式"><a href="#取消移动端输入框-按钮默认样式" class="headerlink" title="取消移动端输入框/按钮默认样式"></a>取消移动端输入框/按钮默认样式</h3><p>直接加载app.js上</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$   -webkit-appearance: none;</span><br></pre></td></tr></table></figure>
 
-<h3 id="3-全局变量"><a href="#3-全局变量" class="headerlink" title="3.全局变量"></a>3.全局变量</h3><h4 id="因为接口的域名在上云后需要变动，在数据库中修改又麻烦，干脆后台在传图片地址的时候-只返回-除了域名的后半段路径"><a href="#因为接口的域名在上云后需要变动，在数据库中修改又麻烦，干脆后台在传图片地址的时候-只返回-除了域名的后半段路径" class="headerlink" title="因为接口的域名在上云后需要变动，在数据库中修改又麻烦，干脆后台在传图片地址的时候 只返回[除了域名的后半段路径]"></a>因为接口的域名在上云后需要变动，在数据库中修改又麻烦，干脆后台在传图片地址的时候 只返回[除了域名的后半段路径]</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="string">'http://192.168.1.104:3008/user/adb/ccd'</span> ==&gt; <span class="string">'/user/abd/ccd'</span></span><br><span class="line">   前半段在前端的全局变量中保存好如下 </span><br><span class="line">$  <span class="comment">#本地调试</span></span><br><span class="line">  const baseUrl = <span class="string">'http://192.168.1.104:3008'</span></span><br><span class="line"><span class="comment">#上云</span></span><br><span class="line">  const baseUrl= <span class="string">'http://106.53.7.24:3008'</span></span><br></pre></td></tr></table></figure>
+<h3 id="全局变量"><a href="#全局变量" class="headerlink" title="全局变量"></a>全局变量</h3><h4 id="因为接口的域名在上云后需要变动，在数据库中修改又麻烦，干脆后台在传图片地址的时候-只返回-除了域名的后半段路径"><a href="#因为接口的域名在上云后需要变动，在数据库中修改又麻烦，干脆后台在传图片地址的时候-只返回-除了域名的后半段路径" class="headerlink" title="因为接口的域名在上云后需要变动，在数据库中修改又麻烦，干脆后台在传图片地址的时候 只返回[除了域名的后半段路径]"></a>因为接口的域名在上云后需要变动，在数据库中修改又麻烦，干脆后台在传图片地址的时候 只返回[除了域名的后半段路径]</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="string">'http://192.168.1.104:3008/user/adb/ccd'</span> ==&gt; <span class="string">'/user/abd/ccd'</span></span><br><span class="line">   前半段在前端的全局变量中保存好如下 </span><br><span class="line">$  <span class="comment">#本地调试</span></span><br><span class="line">  const baseUrl = <span class="string">'http://192.168.1.104:3008'</span></span><br><span class="line"><span class="comment">#上云</span></span><br><span class="line">  const baseUrl= <span class="string">'http://106.53.7.24:3008'</span></span><br></pre></td></tr></table></figure>
 
 <h4 id="如何设置全局变量"><a href="#如何设置全局变量" class="headerlink" title="如何设置全局变量"></a>如何设置全局变量</h4><p> $ 在有网络请求的文件夹下新建=&gt;global.vue</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">global.vue中</span><br><span class="line">      &lt;script&gt;</span><br><span class="line">      	<span class="comment">#本地调试</span></span><br><span class="line">      	  const baseUrl = <span class="string">'http://192.168.1.104:3008'</span></span><br><span class="line">      	<span class="comment">#上云</span></span><br><span class="line">      	  const baseUrl= <span class="string">'http://106.53.7.24:3008'</span>  </span><br><span class="line">          <span class="built_in">export</span> default &#123;  <span class="comment">#导出</span></span><br><span class="line">          	baseUrl</span><br><span class="line">          &#125;</span><br><span class="line">      &lt;/script&gt;</span><br><span class="line">-------	</span><br><span class="line">main.js中 将global加入原型链上</span><br><span class="line">	  import Global_ from <span class="string">'./network/Global'</span>  <span class="comment">#全局变量</span></span><br><span class="line">	  </span><br><span class="line">	  Vue.prototype.GLOBAL = Global_          <span class="comment">#挂载到Vue实例上面</span></span><br><span class="line">------	  </span><br><span class="line">在项目data中</span><br><span class="line"></span><br><span class="line">      baseUrl: this.GLOBAL.baseUrl,</span><br><span class="line">	  </span><br><span class="line">	  &lt;img :src=<span class="string">'baseUrl+item.img'</span>&gt; .....各种地方使用</span><br></pre></td></tr></table></figure>
 <p> $ 酱紫 要是接口变了 改一下baseUrl就行  一个一个去找去改太累</p>
-<h3 id="4-watch属性监听VUEX中的内容"><a href="#4-watch属性监听VUEX中的内容" class="headerlink" title="4.watch属性监听VUEX中的内容"></a>4.watch属性监听VUEX中的内容</h3><h5 id="因为页面加载的时候比vuex-dispatch走一圈直到保存到state下来快多了"><a href="#因为页面加载的时候比vuex-dispatch走一圈直到保存到state下来快多了" class="headerlink" title="因为页面加载的时候比vuex dispatch走一圈直到保存到state下来快多了"></a>因为页面加载的时候比vuex dispatch走一圈直到保存到state下来快多了</h5><h5 id="所以-在进news详情子组件时，还无法分发state中的news信息"><a href="#所以-在进news详情子组件时，还无法分发state中的news信息" class="headerlink" title="所以 在进news详情子组件时，还无法分发state中的news信息"></a>所以 在进news详情子组件时，还无法分发state中的news信息</h5><h5 id="在需要数据的组件中使用-watch-监听news是否改变-gt-若改变重新调用数据分发事件-驱动DOM重新加载"><a href="#在需要数据的组件中使用-watch-监听news是否改变-gt-若改变重新调用数据分发事件-驱动DOM重新加载" class="headerlink" title="在需要数据的组件中使用[watch]监听news是否改变==&gt;若改变重新调用数据分发事件 驱动DOM重新加载"></a>在需要数据的组件中使用[watch]监听news是否改变==&gt;若改变重新调用数据分发事件 驱动DOM重新加载</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ watch:&#123;</span><br><span class="line">	<span class="string">'$store.state.news'</span>:<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">		this.distributeNews()                   <span class="comment">#重新分发的方法</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;，</span><br><span class="line">methods:&#123;</span><br><span class="line">	<span class="function"><span class="title">distributeNews</span></span>()&#123;</span><br><span class="line">		this.news=<span class="variable">$store</span>.state.news</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="watch属性监听VUEX中的内容"><a href="#watch属性监听VUEX中的内容" class="headerlink" title="watch属性监听VUEX中的内容"></a>watch属性监听VUEX中的内容</h3><h4 id="因为页面加载的时候比vuex-dispatch走一圈直到保存到state下来快多了"><a href="#因为页面加载的时候比vuex-dispatch走一圈直到保存到state下来快多了" class="headerlink" title="因为页面加载的时候比vuex dispatch走一圈直到保存到state下来快多了"></a>因为页面加载的时候比vuex dispatch走一圈直到保存到state下来快多了</h4><h4 id="所以-在进news详情子组件时，还无法分发state中的news信息"><a href="#所以-在进news详情子组件时，还无法分发state中的news信息" class="headerlink" title="所以 在进news详情子组件时，还无法分发state中的news信息"></a>所以 在进news详情子组件时，还无法分发state中的news信息</h4><h4 id="在需要数据的组件中使用-watch-监听news是否改变-gt-若改变重新调用数据分发事件-驱动DOM重新加载"><a href="#在需要数据的组件中使用-watch-监听news是否改变-gt-若改变重新调用数据分发事件-驱动DOM重新加载" class="headerlink" title="在需要数据的组件中使用[watch]监听news是否改变==&gt;若改变重新调用数据分发事件 驱动DOM重新加载"></a>在需要数据的组件中使用[watch]监听news是否改变==&gt;若改变重新调用数据分发事件 驱动DOM重新加载</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">$ watch:&#123;</span><br><span class="line">	<span class="string">'$store.state.news'</span>:<span class="function"><span class="title">function</span></span>()&#123;</span><br><span class="line">		this.distributeNews()                   <span class="comment">#重新分发的方法</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;，</span><br><span class="line">methods:&#123;</span><br><span class="line">	<span class="function"><span class="title">distributeNews</span></span>()&#123;</span><br><span class="line">		this.news=<span class="variable">$store</span>.state.news</span><br><span class="line">	&#125; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 
 
-<h3 id="5-发布帖子-★-★-★-★-★"><a href="#5-发布帖子-★-★-★-★-★" class="headerlink" title="5.发布帖子  ★ ★ ★ ★ ★"></a>5.发布帖子  ★ ★ ★ ★ ★</h3><h5 id="node需要express-fileUpload中间件"><a href="#node需要express-fileUpload中间件" class="headerlink" title="node需要express-fileUpload中间件"></a>node需要express-fileUpload中间件</h5><p>const fileUpload=require(‘express-fileupload’)<br>app.use(fileUpload());</p>
-<h5 id="前端页面中使用-vant-的-Uploader组件链接"><a href="#前端页面中使用-vant-的-Uploader组件链接" class="headerlink" title="前端页面中使用[vant]的 Uploader组件链接"></a>前端页面中使用[vant]的 <a href="https://youzan.github.io/vant/?source=vuejsorg#/zh-CN/uploader" target="_blank" rel="noopener">Uploader组件链接</a></h5><p>流程：页面上传文本/图片 -&gt; action去调用NetNews接口组件 -&gt; 后台用(req.files)取图片/(req.body)取文本和发布者信息 ↓</p>
+<h3 id="发布帖子-★-★-★-★-★"><a href="#发布帖子-★-★-★-★-★" class="headerlink" title="发布帖子  ★ ★ ★ ★ ★"></a>发布帖子  ★ ★ ★ ★ ★</h3><h4 id="node需要express-fileUpload中间件"><a href="#node需要express-fileUpload中间件" class="headerlink" title="node需要express-fileUpload中间件"></a>node需要express-fileUpload中间件</h4><p>const fileUpload=require(‘express-fileupload’)<br>app.use(fileUpload());</p>
+<h4 id="前端页面中使用-vant-的-Uploader组件链接"><a href="#前端页面中使用-vant-的-Uploader组件链接" class="headerlink" title="前端页面中使用[vant]的 Uploader组件链接"></a>前端页面中使用[vant]的 <a href="https://youzan.github.io/vant/?source=vuejsorg#/zh-CN/uploader" target="_blank" rel="noopener">Uploader组件链接</a></h4><p>流程：页面上传文本/图片 -&gt; action去调用NetNews接口组件 -&gt; 后台用(req.files)取图片/(req.body)取文本和发布者信息 ↓</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">     var time</span><br><span class="line">     <span class="keyword">for</span> (var i <span class="keyword">in</span> files) &#123; <span class="comment">#遍历传来的图片</span></span><br><span class="line">     	<span class="built_in">let</span> img = files[i]</span><br><span class="line">     	<span class="built_in">let</span> md5Name = img.md5   <span class="comment">#用MD5串当名字以免重复</span></span><br><span class="line">     	<span class="built_in">let</span> <span class="built_in">type</span> = img.mimetype.split(<span class="string">'/'</span>)[1]   <span class="comment">#用分割符分出格式</span></span><br><span class="line">     	var Url = <span class="string">'/images/news/'</span> + md5Name + <span class="string">'.'</span> + <span class="built_in">type</span>  <span class="comment">#写下存储路径 后面方便给接口</span></span><br><span class="line">     	data.imgs[i] = Url          <span class="comment">#把接口塞进数组</span></span><br><span class="line"><span class="comment"># mv移动文件方法</span></span><br><span class="line">     	img.mv(<span class="string">'public/images/news/'</span> + md5Name + <span class="string">'.'</span> + <span class="built_in">type</span>, err =&gt; &#123;</span><br><span class="line">     		<span class="keyword">if</span> (err) &#123;...&#125;</span><br><span class="line">	</span><br><span class="line">     		clearTimeout(time)</span><br><span class="line">     		time = setTimeout(() =&gt; &#123;   <span class="comment">#循环结束后调用新建新闻方法</span></span><br><span class="line">     			News.create(data)</span><br><span class="line">     				.<span class="keyword">then</span>(doc =&gt; &#123;</span><br><span class="line">     					<span class="built_in">return</span> res.json(&#123;</span><br><span class="line">     						status: 200,</span><br><span class="line">     						data: doc</span><br><span class="line">     					&#125;)</span><br><span class="line">     				&#125;)</span><br><span class="line">     				.catch(err =&gt; &#123;</span><br><span class="line">     					<span class="built_in">return</span> res.json(&#123;</span><br><span class="line">     						status: 500,</span><br><span class="line">     						msg: err</span><br><span class="line">     					&#125;)</span><br><span class="line">     				&#125;);</span><br><span class="line">     		&#125;, 100)</span><br><span class="line">     	&#125;)</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="6-node中设置全局变量"><a href="#6-node中设置全局变量" class="headerlink" title="6.node中设置全局变量"></a>6.node中设置全局变量</h3><h4 id="线上线下各备一个"><a href="#线上线下各备一个" class="headerlink" title="线上线下各备一个"></a>线上线下各备一个</h4><p>global.baseURL=”106.53.7.24:3008”<br>global.baseURL=”192.168.1.104:3008”</p>
-<h3 id="7-对象转数组"><a href="#7-对象转数组" class="headerlink" title="7.对象转数组"></a>7.对象转数组</h3><p>因为req.files传进来是Obj状态 后面不好遍历存入，遂先把对象转为数组</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$   <span class="built_in">let</span> files = [] <span class="comment">#把对象转成数组</span></span><br><span class="line">	<span class="keyword">for</span> (<span class="built_in">let</span> u <span class="keyword">in</span> req.files) &#123;</span><br><span class="line">		files.push(req.files[u])</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="node中设置全局变量"><a href="#node中设置全局变量" class="headerlink" title="node中设置全局变量"></a>node中设置全局变量</h3><h4 id="线上线下各备一个"><a href="#线上线下各备一个" class="headerlink" title="线上线下各备一个"></a>线上线下各备一个</h4><p>global.baseURL=”106.53.7.24:3008”<br>global.baseURL=”192.168.1.104:3008”</p>
+<h3 id="对象转数组"><a href="#对象转数组" class="headerlink" title="对象转数组"></a>对象转数组</h3><p>因为req.files传进来是Obj状态 后面不好遍历存入，遂先把对象转为数组</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$   let files = [] #把对象转成数组</span><br><span class="line">	<span class="keyword">for</span> (<span class="keyword">let</span> u <span class="keyword">in</span> req.files) &#123;</span><br><span class="line">		files.push(req.files[u])</span><br><span class="line">	&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="git-上传"><a href="#git-上传" class="headerlink" title="git 上传"></a>git 上传</h2><h3 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h3><p>…or create a new repository on the command line<br>echo “# gym-server” &gt;&gt; README.md<br>git init<br>git add README.md<br>git commit -m “first commit”<br>git remote add origin <a href="https://github.com/villiamVIX/gym-server.git" target="_blank" rel="noopener">https://github.com/villiamVIX/gym-server.git</a><br>git push -u origin master</p>
-<h3 id="已有的项目"><a href="#已有的项目" class="headerlink" title="已有的项目"></a>已有的项目</h3><p>…or push an existing repository from the command line<br>git remote add origin <a href="https://github.com/villiamVIX/gym-server.git" target="_blank" rel="noopener">https://github.com/villiamVIX/gym-server.git</a><br>git push -u origin master</p>
+
+
+
+<h3 id="git上传"><a href="#git上传" class="headerlink" title="git上传"></a>git上传</h3><h4 id="新建项目"><a href="#新建项目" class="headerlink" title="新建项目"></a>新建项目</h4><p>…or create a new repository on the command line<br>echo “# gym-server” &gt;&gt; README.md<br>git init<br>git add README.md<br>git commit -m “first commit”<br>git remote add origin <a href="https://github.com/villiamVIX/gym-server.git" target="_blank" rel="noopener">https://github.com/villiamVIX/gym-server.git</a><br>git push -u origin master</p>
+<h4 id="已有的项目"><a href="#已有的项目" class="headerlink" title="已有的项目"></a>已有的项目</h4><p>…or push an existing repository from the command line<br>git remote add origin <a href="https://github.com/villiamVIX/gym-server.git" target="_blank" rel="noopener">https://github.com/villiamVIX/gym-server.git</a><br>git push -u origin master</p>
 
           
         
@@ -1170,7 +1296,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">7</span>
+                  <span class="site-state-item-count">8</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
