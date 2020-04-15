@@ -229,6 +229,131 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/15/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%AC%94%E8%AE%B0/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="John Doe">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Hexo">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2020/04/15/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%AC%94%E8%AE%B0/" itemprop="url">小程序笔记</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2020-04-15T22:44:07+08:00">
+                2020-04-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h2 id="import导入-include导入"><a href="#import导入-include导入" class="headerlink" title="import导入/include导入"></a>import导入/include导入</h2><ul>
+<li><p>import导入主要用于导入&lt;template<em>&gt;</em>的不支持递归(套娃导入)</p>
+</li>
+<li><p>include用于导入共同的页头部和页尾部，可以递归导入；不能导入wxs、template的组件</p>
+</li>
+</ul>
+<h2 id="lt-template-gt-组件用法"><a href="#lt-template-gt-组件用法" class="headerlink" title="&lt;template&gt;组件用法"></a>&lt;template<em>&gt;</em>组件用法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//写法</span></span><br><span class="line">&lt;template name=<span class="string">'组件一'</span> *&gt;*</span><br><span class="line">&lt;view&gt;sss&lt;view&gt;</span><br><span class="line">&lt;<span class="regexp">/temlate&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/用法  用is去获取</span></span><br><span class="line"><span class="regexp">&lt;template is='组件一' *&gt;*</span></span><br><span class="line"><span class="regexp">&lt;/</span>temlate&gt;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/03/10/%E7%96%AB%E6%83%85%E5%9C%B0%E5%9B%BE%E5%92%8C%E7%88%AC%E5%8F%96%E6%95%B0%E6%8D%AE/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -493,10 +618,21 @@
 <h3 id="导出"><a href="#导出" class="headerlink" title="导出"></a>导出</h3><p>若是csv导出必填filed 一个一个字段名填进去  ，json就不用了<br>        mongoexport -d dbname -c collectionname -o file –type json/csv -f field<br>        参数说明：<br>            -d ：数据库名<br>            -c ：collection名<br>            -o ：输出的文件名<br>            –type ： 输出的格式，默认为json<br>            -f ：输出的字段，如果-type为csv，则需要加上-f “字段名”</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">--------json导出</span><br><span class="line">#newslist</span><br><span class="line">D:\data&gt;mongoexport -d gym -c newslists -o C:\Users\Administrator\Desktop\<span class="number">3</span><span class="number">-31</span>json\gym\newslists.json --type json</span><br><span class="line"></span><br><span class="line">#users</span><br><span class="line">D:\data&gt;mongoexport -d gym -c users -o C:\Users\Administrator\Desktop\<span class="number">3</span><span class="number">-31</span>json\gym\users.json --type json</span><br><span class="line"></span><br><span class="line">#lessons </span><br><span class="line">D:\data&gt;mongoexport -d gym -c lessons -o C:\Users\Administrator\Desktop\<span class="number">3</span><span class="number">-31</span>json\gym\lessons.json --type json</span><br><span class="line"></span><br><span class="line">#commons </span><br><span class="line">D:\data&gt;mongoexport -d gym -c commons -o C:\Users\Administrator\Desktop\<span class="number">3</span><span class="number">-31</span>json\gym\commons.json --type json</span><br><span class="line"></span><br><span class="line">#coachs </span><br><span class="line">D:\data&gt;mongoexport -d gym -c coachs -o C:\Users\Administrator\Desktop\<span class="number">3</span><span class="number">-31</span>json\gym\coachs.json --type json</span><br><span class="line"></span><br><span class="line">#bookeds</span><br><span class="line">mongoexport -d gym -c bookeds -o C:\Users\Administrator\Desktop\<span class="number">3</span><span class="number">-31</span>json\gym\bookeds.json --type json</span><br><span class="line">---导出Excel</span><br><span class="line"></span><br><span class="line">#coachs表</span><br><span class="line">D:\data&gt;mongoexport -d gym -c coachs -o C:\Users\Administrator\Desktop\<span class="number">3</span><span class="number">-31</span>json\</span><br><span class="line">gym\coachs.csv --type csv -f <span class="string">"_id,name,level,major,totalCount,monthCount,weekCou</span></span><br><span class="line"><span class="string">nt,price,cohPic,bookInfo"</span></span><br><span class="line"></span><br><span class="line">#commons</span><br><span class="line">D:\data&gt;mongoexport -d gym -c commons -o C:\Users\Administrator\Desktop\<span class="number">3</span><span class="number">-31</span>json</span><br><span class="line">\gym\commons.csv --type csv -f <span class="string">"_id,swipers,recommend"</span></span><br><span class="line"></span><br><span class="line">#lessons</span><br><span class="line">D:\data&gt;mongoexport -d gym -c lessons -o C:\Users\Administrator\Desktop\<span class="number">3</span><span class="number">-31</span>json</span><br><span class="line">\gym\lessons.csv --type csv -f <span class="string">"_id,lessonName,teacher,time,during,type,week"</span></span><br><span class="line"></span><br><span class="line">#newslists</span><br><span class="line">D:\data&gt;mongoexport -d gym -c newslists -o C:\Users\Administrator\Desktop\<span class="number">3</span><span class="number">-31</span>js</span><br><span class="line">on\gym\newslists.csv --type csv -f <span class="string">"_id,imgs,avatar,title,article,date,reply,las</span></span><br><span class="line"><span class="string">tUpdate,author"</span></span><br><span class="line"></span><br><span class="line">#users</span><br><span class="line">D:\data&gt;mongoexport -d gym -c users -o C:\Users\Administrator\Desktop\<span class="number">3</span><span class="number">-31</span>json\g</span><br><span class="line">ym\users.csv --type csv -f <span class="string">"_id,gender,remain,age,calendar,username,phone,passwo</span></span><br><span class="line"><span class="string">rd,avatar,freq,role,joinDate,deadLine,birth"</span></span><br></pre></td></tr></table></figure>
 <h3 id="导入"><a href="#导入" class="headerlink" title="导入"></a>导入</h3><p>先在服务器中新建一个数据库</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">mongod -==- </span><br><span class="line">mongo -==- </span><br><span class="line">show dbs-==- 看看所有数据库</span><br><span class="line">use gym-==-  新建数据库/若有是选用/无即新建/若新建后无操作就自动删除 下次查看不存在</span><br><span class="line">show collections-==- 看所有数据表</span><br><span class="line">db.XXXXX.drop()-==- 删除某个表 (因为导入数据库必须是空表)</span><br><span class="line"></span><br><span class="line">用mongoimport方法导入(<span class="number">2</span>中文件的方法) </span><br><span class="line">mongoimport -d gym -c users --file /data/csv/users.json --type json</span><br><span class="line">mongoimport -d gym -c lessons --file /data/csv/lessons.csv --headerline --type csv</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">mongoimport -d gym -c users --file /data/csv/users.json --type json</span><br><span class="line">mongoimport -d gym -c lessons --file /data/csv/lessons.json --type json</span><br><span class="line">mongoimport -d gym -c bookeds --file /data/csv/bookeds.json --type json</span><br><span class="line">mongoimport -d gym -c coachs --file /data/csv/coachs.json --type json</span><br><span class="line">mongoimport -d gym -c commons --file /data/csv/commons.json --type json</span><br><span class="line">mongoimport -d gym -c newslists --file /data/csv/newslists.json --type json</span><br></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">mongod -==- </span><br><span class="line">mongo -==- </span><br><span class="line">show dbs-==- 看看所有数据库</span><br><span class="line">use gym-==-  新建数据库/若有是选用/无即新建/若新建后无操作就自动删除 下次查看不存在</span><br><span class="line">show collections-==- 看所有数据表</span><br><span class="line">db.XXXXX.drop()-==- 删除某个表 (因为导入数据库必须是空表)</span><br><span class="line"></span><br><span class="line">用mongoimport方法导入(<span class="number">2</span>中文件的方法) </span><br><span class="line">mongoimport -d gym -c users --file /data/csv/users.json --type json</span><br><span class="line">mongoimport -d gym -c lessons --file /data/csv/lessons.csv --headerline --type csv</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">---</span><br><span class="line">mongoimport -d gym -c users --file /data/csv/users.json --type json</span><br><span class="line">mongoimport -d gym -c lessons --file /data/csv/lessons.json --type json</span><br><span class="line">mongoimport -d gym -c bookeds --file /data/csv/bookeds.json --type json</span><br><span class="line">mongoimport -d gym -c coachs --file /data/csv/coachs.json --type json</span><br><span class="line">mongoimport -d gym -c commons --file /data/csv/commons.json --type json</span><br><span class="line">mongoimport -d gym -c newslists --file /data/csv/newslists.json --type json</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">mongoimport -d gym -c newslists --file /usr/mongodb/data/newslists.json --type json</span><br><span class="line">mongoimport -d gym -c bookeds --file /usr/mongodb/data/bookeds.json --type json</span><br><span class="line">mongoimport -d gym -c coachs --file /usr/mongodb/data/coachs.json --type json</span><br><span class="line">mongoimport -d gym -c lessons --file /usr/mongodb/data/lessons.json --type json</span><br><span class="line">mongoimport -d gym -c users --file /usr/mongodb/data/users.json --type json</span><br><span class="line">mongoimport -d gym -c commons --file /usr/mongodb/data/commons.json --type json</span><br></pre></td></tr></table></figure>
 <p> mongoimport -d dbname -c collectionname –file filename –headerline –type json/csv -f field<br>        参数说明：<br>            -d ：数据库名<br>            -c ：collection名<br>            –type ：导入的格式默认json<br>            -f ：导入的字段名<br>            –headerline ：如果导入的格式是csv，则可以使用第一行的标题作为导入的字段<br>            –file ：要导入的文件</p>
 <h2 id="持久化在服务器开启-用-fork守护"><a href="#持久化在服务器开启-用-fork守护" class="headerlink" title="持久化在服务器开启 用-fork守护"></a>持久化在服务器开启 用-fork守护</h2><p>conf文件中编辑好</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mongod -f /usr/mongodb/mongodb.conf</span><br></pre></td></tr></table></figure>
+
+<h2 id="开启数据库密码，登录验证"><a href="#开启数据库密码，登录验证" class="headerlink" title="开启数据库密码，登录验证"></a>开启数据库密码，登录验证</h2><h3 id="记录一下第一次被黑客攻击，删库索要比特币！可惜目前的数据不值钱，他只能想屁吃。引起重视先开个密码！"><a href="#记录一下第一次被黑客攻击，删库索要比特币！可惜目前的数据不值钱，他只能想屁吃。引起重视先开个密码！" class="headerlink" title="记录一下第一次被黑客攻击，删库索要比特币！可惜目前的数据不值钱，他只能想屁吃。引起重视先开个密码！"></a>记录一下第一次被黑客攻击，删库索要比特币！可惜目前的数据不值钱，他只能想屁吃。引起重视先开个密码！</h3><h4 id="MongoDB-目前内置了-7-个角色。"><a href="#MongoDB-目前内置了-7-个角色。" class="headerlink" title="MongoDB 目前内置了 7 个角色。"></a>MongoDB 目前内置了 7 个角色。</h4><p>数据库用户角色：read、readWrite;<br>数据库管理角色：dbAdmin、dbOwner、userAdmin；<br>集群管理角色：clusterAdmin、clusterManager、clusterMonitor、hostManager；<br>备份恢复角色：backup、restore；<br>所有数据库角色：readAnyDatabase、readWriteAnyDatabase、userAdminAnyDatabase、dbAdminAnyDatabase<br>超级用户角色：root；这里还有几个角色间接或直接提供了系统超级用户的访问（dbOwner 、userAdmin、userAdminAnyDatabase）<br>内部角色：__system</p>
+<h4 id="这些角色对应的作用如下："><a href="#这些角色对应的作用如下：" class="headerlink" title="这些角色对应的作用如下："></a>这些角色对应的作用如下：</h4><p>Read：允许用户读取指定数据库<br>readWrite：允许用户读写指定数据库<br>dbAdmin：允许用户在指定数据库中执行管理函数，如索引创建、删除，查看统计或访问system.profile<br>userAdmin：允许用户向system.users集合写入，可以找指定数据库里创建、删除和管理用户<br>clusterAdmin：只在admin数据库中可用，赋予用户所有分片和复制集相关函数的管理权限。<br>readAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的读权限<br>readWriteAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的读写权限<br>userAdminAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的userAdmin权限<br>dbAdminAnyDatabase：只在admin数据库中可用，赋予用户所有数据库的dbAdmin权限。<br>root：只在admin数据库中可用。超级账号，超级权限</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//若密码有 ？ ：。　符号 用16进制对应代替 如？ ==&gt; %3F</span></span><br><span class="line"><span class="comment">//给gym数据库加上 账号密码</span></span><br><span class="line">db.createUser(&#123;<span class="attr">user</span>:<span class="string">'vix'</span>,<span class="attr">pwd</span>:<span class="string">'zw11663%3F'</span>,<span class="attr">roles</span>:[&#123;<span class="attr">role</span>:<span class="string">"root"</span>,<span class="attr">db</span>:<span class="string">"admin"</span>&#125;]&#125;)</span><br><span class="line"><span class="comment">//开启验证后 mongo链接或者mongoose连接都要验证账号密码</span></span><br><span class="line">db.auth(<span class="string">'账号'</span>，<span class="string">'密码'</span>)</span><br></pre></td></tr></table></figure>
+
+
+<p>如下是conf配置文件–从中开启auth=true的登陆验证</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">port=27017 #端口</span><br><span class="line">dbpath= /data/db #数据库存文件存放目录</span><br><span class="line">logpath= /usr/mongodb/log/mongodb.log #日志文件存放路径</span><br><span class="line">logappend=true #使用追加的方式写日志</span><br><span class="line">fork=true #以守护进程的方式运行，创建服务器进程</span><br><span class="line">maxConns=100 #最大同时连接数</span><br><span class="line">#noauth=true 不启用验证  给关了</span><br><span class="line">journal=true #每次写入会记录一条操作日志（通过journal可以重新构造出写入的数据）。</span><br><span class="line">#即使宕机，启动时wiredtiger会先将数据恢复到最近一次的checkpoint点，然后重放后续的journal日志来恢复。</span><br><span class="line">storageEngine=wiredTiger  #存储引擎有mmapv1、wiretiger、mongorocks</span><br><span class="line">bind_ip = 0.0.0.0  #这样就可外部访问了，例如连虚拟机中的MongoDB</span><br><span class="line">auth=true  #！！开启验证</span><br></pre></td></tr></table></figure>
+
+
+
           
         
       
@@ -996,6 +1132,11 @@
 <h2 id="vue动态样式-动态背景图片"><a href="#vue动态样式-动态背景图片" class="headerlink" title="vue动态样式+动态背景图片"></a>vue动态样式+动态背景图片</h2><p>用方法计算好显示什么背景图 :style动态绑定给background 这个不难<br>难在动态绑定的写法，直接写缩放和位移会报错，按照如下格式写<br>位移：-6px -1rem 或者 写bottom/center/top  优先吃字母写法<br>缩放和属性在/之后写入</p>
 <p>！！外圈一定要{}</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;div :style=<span class="string">"&#123;background: 'url(' + cardBgUrl + ') -5px -1rem / 105% no-repeat'&#125;"</span>&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="部署温故"><a href="#部署温故" class="headerlink" title="部署温故"></a>部署温故</h2><p>linux会用到的命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">端口</span><br><span class="line">查看所有端口     lsof -i</span><br><span class="line">看指定端口       lsof -i:8080</span><br><span class="line"></span><br><span class="line">nginx </span><br><span class="line">在sbin下开启服务 ./nginx</span><br><span class="line">重载   ./nginx -s reload</span><br><span class="line">停止   ./nginx -s stop</span><br><span class="line"></span><br><span class="line">pm2</span><br><span class="line">服务列表   pm2 ls</span><br><span class="line">停止某个   pm2 stop X</span><br><span class="line">继续某个   pm2 start x</span><br></pre></td></tr></table></figure>
+
+<h3 id="阿里云开放安全组-开不起来就去宝塔开"><a href="#阿里云开放安全组-开不起来就去宝塔开" class="headerlink" title="阿里云开放安全组 开不起来就去宝塔开"></a>阿里云开放安全组 开不起来就去宝塔开</h3>
           
         
       
@@ -1114,10 +1255,10 @@
       
         
           
-            <h2 id="1-仿蘑菇街"><a href="#1-仿蘑菇街" class="headerlink" title="1.仿蘑菇街"></a>1.仿蘑菇街</h2><h3 id="技术栈：vue-js-vant-ui-vue-router-axios-vuex"><a href="#技术栈：vue-js-vant-ui-vue-router-axios-vuex" class="headerlink" title="技术栈：vue.js/vant-ui/vue-router/axios/vuex"></a>技术栈：vue.js/vant-ui/vue-router/axios/vuex</h3><p> 链接: <a href="http://106.53.7.24:8188/home" target="_blank" rel="noopener">1.1.0</a></p>
-<h2 id="2-租8租房"><a href="#2-租8租房" class="headerlink" title="2.租8租房"></a>2.租8租房</h2><h3 id="技术栈：Javascript-Jquery-Ajax-lay-ui-bootstrap-Ejs"><a href="#技术栈：Javascript-Jquery-Ajax-lay-ui-bootstrap-Ejs" class="headerlink" title="技术栈：Javascript/Jquery/Ajax/lay-ui/bootstrap/Ejs"></a>技术栈：Javascript/Jquery/Ajax/lay-ui/bootstrap/Ejs</h3><p> 链接: <a href="http://106.53.7.24:3000/index" target="_blank" rel="noopener">1.0.8</a></p>
-<h2 id="3-健身房管理系统-前端（建设中）"><a href="#3-健身房管理系统-前端（建设中）" class="headerlink" title="3.健身房管理系统-前端（建设中）"></a>3.健身房管理系统-前端（建设中）</h2><h3 id="技术栈：vue-js-vant-ui-vue-router-axios-vuex-1"><a href="#技术栈：vue-js-vant-ui-vue-router-axios-vuex-1" class="headerlink" title="技术栈：vue.js/vant-ui/vue-router/axios/vuex"></a>技术栈：vue.js/vant-ui/vue-router/axios/vuex</h3><p> 链接: <a href="http://106.53.7.24:8080" target="_blank" rel="noopener">beta</a></p>
-<h2 id="3-健身房管理系统-后端（建设中）"><a href="#3-健身房管理系统-后端（建设中）" class="headerlink" title="3.健身房管理系统-后端（建设中）"></a>3.健身房管理系统-后端（建设中）</h2><h3 id="技术栈：node-js-express-mongoose-svg-captcha-mongodb"><a href="#技术栈：node-js-express-mongoose-svg-captcha-mongodb" class="headerlink" title="技术栈：node.js/express/mongoose/svg-captcha || mongodb"></a>技术栈：node.js/express/mongoose/svg-captcha || mongodb</h3><p> 链接: <a href="http://106.53.7.24:3000/按需访问" target="_blank" rel="noopener">beta</a></p>
+            <h2 id="1-仿蘑菇街"><a href="#1-仿蘑菇街" class="headerlink" title="1.仿蘑菇街"></a>1.仿蘑菇街</h2><h3 id="技术栈：vue-js-vant-ui-vue-router-axios-vuex"><a href="#技术栈：vue-js-vant-ui-vue-router-axios-vuex" class="headerlink" title="技术栈：vue.js/vant-ui/vue-router/axios/vuex"></a>技术栈：vue.js/vant-ui/vue-router/axios/vuex</h3><p> 链接: <a href="http://120.79.171.194:8188/home" target="_blank" rel="noopener">1.0.0</a></p>
+<h2 id="2-租8租房"><a href="#2-租8租房" class="headerlink" title="2.租8租房"></a>2.租8租房</h2><h3 id="技术栈：Javascript-Jquery-Ajax-lay-ui-bootstrap-art-template"><a href="#技术栈：Javascript-Jquery-Ajax-lay-ui-bootstrap-art-template" class="headerlink" title="技术栈：Javascript/Jquery/Ajax/lay-ui/bootstrap/art-template"></a>技术栈：Javascript/Jquery/Ajax/lay-ui/bootstrap/art-template</h3><p> 链接: <a href="http://120.79.171.194:3000/index" target="_blank" rel="noopener">0.5.8</a></p>
+<h2 id="3-健身房管理系统-前端（建设中）"><a href="#3-健身房管理系统-前端（建设中）" class="headerlink" title="3.健身房管理系统-前端（建设中）"></a>3.健身房管理系统-前端（建设中）</h2><h3 id="技术栈：vue-js-vant-ui-vue-router-axios-vuex-1"><a href="#技术栈：vue-js-vant-ui-vue-router-axios-vuex-1" class="headerlink" title="技术栈：vue.js/vant-ui/vue-router/axios/vuex"></a>技术栈：vue.js/vant-ui/vue-router/axios/vuex</h3><p> 链接: <a href="http://120.79.171.194:8080" target="_blank" rel="noopener">beta</a></p>
+<h2 id="3-健身房管理系统-后端（建设中）"><a href="#3-健身房管理系统-后端（建设中）" class="headerlink" title="3.健身房管理系统-后端（建设中）"></a>3.健身房管理系统-后端（建设中）</h2><h3 id="技术栈：node-js-express-mongoose-svg-captcha-mongodb"><a href="#技术栈：node-js-express-mongoose-svg-captcha-mongodb" class="headerlink" title="技术栈：node.js/express/mongoose/svg-captcha || mongodb"></a>技术栈：node.js/express/mongoose/svg-captcha || mongodb</h3><p> 链接: <a href="http://120.79.171.194:3000/按需访问" target="_blank" rel="noopener">beta</a></p>
 <h2 id="个人简历"><a href="#个人简历" class="headerlink" title="个人简历"></a>个人简历</h2><p><img src="/2020/02/28/%E5%B7%B2%E9%83%A8%E7%BD%B2%E9%A1%B9%E7%9B%AE/jianli.jpg" alt="jianli"></p>
 
           
@@ -1241,6 +1382,7 @@
             <h3 id="开启代理错误拦截功能"><a href="#开启代理错误拦截功能" class="headerlink" title="开启代理错误拦截功能"></a>开启代理错误拦截功能</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">$   (nginx)=&gt;(conf)=&gt;nginx.conf:&#123;</span><br><span class="line">	http:&#123;</span><br><span class="line">		....</span><br><span class="line">        proxy_intercept_errors on; </span><br><span class="line">	   	server:&#123;</span><br><span class="line">	   		....</span><br><span class="line">	   	  &#125;</span><br><span class="line">	    &#125;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
 
 <h3 id="添加404-405-406-505-定义错误页面码，出现相应的错误页面码转发路径。"><a href="#添加404-405-406-505-定义错误页面码，出现相应的错误页面码转发路径。" class="headerlink" title="添加404 405 406 505 定义错误页面码，出现相应的错误页面码转发路径。"></a>添加404 405 406 505 定义错误页面码，出现相应的错误页面码转发路径。</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">$   (nginx)=&gt;(conf)=&gt;nginx.conf:&#123;</span><br><span class="line">	http:&#123;</span><br><span class="line">		error_page  404 403 500 502 503 504  /404.html;</span><br><span class="line">		</span><br><span class="line">		<span class="comment"># 承接上面的location。</span></span><br><span class="line">		</span><br><span class="line">		location = /404.html &#123;</span><br><span class="line">		</span><br><span class="line">		<span class="comment"># 放错误页面的目录路径。</span></span><br><span class="line">		</span><br><span class="line">		root   err;</span><br><span class="line">		</span><br><span class="line">		&#125;</span><br><span class="line">     &#125;</span><br></pre></td></tr></table></figure>
+
           
         
       
@@ -1578,7 +1720,7 @@
               
                 <a href="/archives/%20%7C%7C%20archive">
               
-                  <span class="site-state-item-count">8</span>
+                  <span class="site-state-item-count">9</span>
                   <span class="site-state-item-name">posts</span>
                 </a>
               </div>
