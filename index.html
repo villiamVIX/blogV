@@ -307,6 +307,106 @@
 </li>
 </ul>
 <h2 id="lt-template-gt-组件用法"><a href="#lt-template-gt-组件用法" class="headerlink" title="&lt;template&gt;组件用法"></a>&lt;template<em>&gt;</em>组件用法</h2><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//写法</span></span><br><span class="line">&lt;template name=<span class="string">'组件一'</span> *&gt;*</span><br><span class="line">&lt;view&gt;sss&lt;view&gt;</span><br><span class="line">&lt;<span class="regexp">/temlate&gt;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/用法  用is去获取</span></span><br><span class="line"><span class="regexp">&lt;template is='组件一' *&gt;*</span></span><br><span class="line"><span class="regexp">&lt;/</span>temlate&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="事件捕获-冒泡"><a href="#事件捕获-冒泡" class="headerlink" title="事件捕获/冒泡"></a>事件捕获/冒泡</h2><ul>
+<li>捕获：从外-&gt;到内 </li>
+<li>冒泡：从内-&gt;到外</li>
+</ul>
+<h3 id="捕获capture-bind-tap"><a href="#捕获capture-bind-tap" class="headerlink" title="捕获capture-bind:tap"></a>捕获capture-bind:tap</h3><p>点内部 会从爹部分的外部一层层传进来</p>
+<h3 id="阻止捕获capture-catch-tap"><a href="#阻止捕获capture-catch-tap" class="headerlink" title="阻止捕获capture-catch:tap"></a>阻止捕获capture-catch:tap</h3><p>从写的地方开始有断点，写之前的爹组件都会相继触发</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">---wxml</span><br><span class="line">&lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">"out"</span> capture-<span class="keyword">catch</span>:tap=<span class="string">'captureOuter'</span> bindtap=<span class="string">'Outtap'</span>&gt;</span><br><span class="line"></span><br><span class="line">  &lt;view <span class="class"><span class="keyword">class</span></span>=<span class="string">"inner"</span> capture-bind:tap=<span class="string">'captureInner'</span> bindtap=<span class="string">'innertap'</span>&gt;</span><br><span class="line">  &lt;<span class="regexp">/view&gt;</span></span><br><span class="line"><span class="regexp">  </span></span><br><span class="line"><span class="regexp">&lt;/</span>view&gt;</span><br><span class="line"></span><br><span class="line">---js执行顺序</span><br><span class="line">点内 captureOuter-&gt;captureInner-&gt;innertap-&gt;Outtap</span><br><span class="line">---若写了capture-<span class="keyword">catch</span>:tap在外层</span><br><span class="line">点内 captureOuter无后续</span><br></pre></td></tr></table></figure>
+
+<h2 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h2><ul>
+<li><p>写好子组件，在爹组件中的json文件里useingComponents：里注册好，若多出要用就直接在app中全局注册</p>
+</li>
+<li><p>子组件不能不用id、属性、标签/只能用class选择器</p>
+</li>
+<li><p>默认父子组件样式隔离互不影响；若想影响在js文件中的component的options的styleIsolation:属性变为apply-shared</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">Component:(&#123;</span><br><span class="line">	options:&#123;</span><br><span class="line">		styleIsolation:<span class="string">'shared'</span> --&gt;双向影响</span><br><span class="line">		styleIsolation：<span class="string">"apply-shared"</span> --&gt;爹对子影响</span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>组件间样式 externalClasses</p>
+</li>
+</ul>
+<p>1.在子组件定义好externalClasses属性用数组<br>2.在爹组件写好class样式<br>3.在爹组件中&lt;dad 订好的样式名=’爹中样式’&gt;</p>
+<ul>
+<li>父传子传值 properties</li>
+</ul>
+<p>1.在组件Component({})中写好接受的值名<br>2.默认用value：’’<br>3.可以监听用 observer：跟vue的watch一样接受（new,old）然后方法</p>
+<ul>
+<li><p>子传父传值 用方法<strong>triggerEvent</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//在子组件的method里监听点击</span></span><br><span class="line">clickBtn()&#123;</span><br><span class="line">	<span class="keyword">this</span>.triggerEvent(<span class="string">"传给爹的方法名"</span>,&#123;参数&#125;,&#123;?&#125;)</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//爹组件监听 wxml</span></span><br><span class="line">&lt;son-cpn bind:子传的名=<span class="string">'爹的方法'</span>&gt;</span><br><span class="line"><span class="comment">//爹组件方法</span></span><br><span class="line">爹的方法(event)&#123;</span><br><span class="line">	event.detail里有子传来的参数</span><br><span class="line">	该干嘛干嘛</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>爹找组件的方法<strong>selectComponent</strong><br>用这个方法可以直接改子里的数据，但是最好子暴露出子组件内部的数据修改方法，供爹调用</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">this</span>.selectComponent(<span class="string">'class/id'</span>)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>子组件的方法只能写在method里</p>
+</li>
+</ul>
+<h2 id="迁移VUE的icomoon的svg样式"><a href="#迁移VUE的icomoon的svg样式" class="headerlink" title="迁移VUE的icomoon的svg样式"></a>迁移VUE的icomoon的svg样式</h2><ul>
+<li>因为小程序支持用BASE64显示，那就转base64在看<br>网上看了别人的教程 都说直接转码替换@font-face事实我用的时候不行。<br>试了4个小时，转码无数遍，准备放弃，去iconfont重新挑选导入的时候，试着原生导入方法再改一遍！成了<br><strong>！必须原style.css的@font-face齐聚一堂 仅替换.ttf</strong></li>
+</ul>
+<ol>
+<li><p>和vue一样，先去阿里iconfont下好想要的svg图片(建议本地备份一遍/iconfont里项目文件夹备份一份)</p>
+</li>
+<li><p>导入icomoon后-下载好svg压缩包(下称1号文件)=&gt;有用的(font/.ttf)+style.css</p>
+</li>
+<li><p>vue中是直接使用；小程序要提出1中的font/.ttf文件去下述转码网址转换 =&gt;得到stylesheet.css</p>
+</li>
+<li><p>转码后把1里的style.css的@font-face里的后缀是format(‘truetype’)的文件 =&gt; 替换为2中下载的@font-face里的那行truetype</p>
+</li>
+<li><p>爱怎么导入/还是直接写app.wxss都可以 ！page是可以直接用</p>
+</li>
+<li><p>在子组件中本身是获取不到app的全局导入的图标样式</p>
+</li>
+<li><p>需要在子组件中的 .js 开启 options: {<br> addGlobalClass: true,<br>},表示接受全局样式 / 因为单独在子组件导入样式是不显示也不现实的。</p>
+</li>
+</ol>
+<h3 id="几个转base64的网址"><a href="#几个转base64的网址" class="headerlink" title="几个转base64的网址"></a>几个转base64的网址</h3><ul>
+<li><a href="https://www.sojson.com/image2base64.html" target="_blank" rel="noopener">https://www.sojson.com/image2base64.html</a></li>
+<li><a href="https://www.motobit.com/util/base64-decoder-encoder.asp" target="_blank" rel="noopener">https://www.motobit.com/util/base64-decoder-encoder.asp</a></li>
+<li><a href="https://transfonter.org/" target="_blank" rel="noopener">https://transfonter.org/</a></li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@font-face &#123;</span><br><span class="line">  font-family: <span class="string">'gymIcon-'</span>;</span><br><span class="line">  src:  url(<span class="string">'fonts/gymIcon-.eot?xh1aoe'</span>);</span><br><span class="line">  src:  url(<span class="string">'fonts/gymIcon-.eot?xh1aoe#iefix'</span>) format(<span class="string">'embedded-opentype'</span>),</span><br><span class="line">  &lt;!-- 就是缩略这行  base64可以在第二个网站自己提出来替换--&gt;</span><br><span class="line">	url(data:font/truetype;charset=utf<span class="number">-8</span>;base64,AAEAAAANAIAAAwBQRkZUTYshsZ0AADGMAAAAHEdERUYAJwA) format(<span class="string">'truetype'</span>) ,</span><br><span class="line">  &lt;!--这样  底下的woff/svg老老实实写住--&gt;</span><br><span class="line">    url(<span class="string">'fonts/gymIcon-.woff?xh1aoe'</span>) format(<span class="string">'woff'</span>),</span><br><span class="line">    url(<span class="string">'fonts/gymIcon-.svg?xh1aoe#gymIcon-'</span>) format(<span class="string">'svg'</span>);</span><br><span class="line">  font-weight: normal;</span><br><span class="line">  font-style: normal;</span><br><span class="line">  font-display: block;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="小程序多余文字省略"><a href="#小程序多余文字省略" class="headerlink" title="小程序多余文字省略"></a>小程序多余文字省略</h2><ul>
+<li>主要在爹组件设好overflow:hidden!</li>
+<li>在子组件<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.newsTitle</span>&#123;</span><br><span class="line">	<span class="attribute">overflow</span>: hidden;</span><br><span class="line">	<span class="attribute">white-space</span>: nowrap;</span><br><span class="line">	<span class="attribute">text-overflow</span>: ellipsis; </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="slot插槽"><a href="#slot插槽" class="headerlink" title="slot插槽"></a>slot插槽</h2><ul>
+<li><p>多孔插槽mutipleSlots</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 子多孔插槽写法 --&gt;</span> 取个name确定唯一插入地</span><br><span class="line"><span class="tag">&lt;<span class="name">view</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">'11111'</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">slot</span> <span class="attr">name</span>=<span class="string">'22222'</span>&gt;</span><span class="tag">&lt;/<span class="name">slot</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">view</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- 爹调用 --&gt;</span>        用slot='上面定的name'</span><br><span class="line"><span class="tag">&lt;<span class="name">my-slot</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">button</span> <span class="attr">slot</span>=<span class="string">'11111'</span>&gt;</span>哈哈哈哈哈哈哈哈哈<span class="tag">&lt;/<span class="name">button</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">text</span> <span class="attr">slot</span>=<span class="string">'22222'</span>&gt;</span>哈哈哈哈哈哈哈哈哈<span class="tag">&lt;/<span class="name">text</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">my-slot</span>&gt;</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p>注意得在js中开启options多孔插槽选项</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Component(&#123;</span><br><span class="line">	options:&#123;</span><br><span class="line">		multipleSlots:<span class="literal">true</span></span><br><span class="line">	&#125;</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="组件的生命周期"><a href="#组件的生命周期" class="headerlink" title="组件的生命周期"></a>组件的生命周期</h2><ul>
+<li>子组件可以听到两个生命周期:’自身’/‘爹的’</li>
+</ul>
+<p><strong>自身的生命周期</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">lifetimes:&#123;</span><br><span class="line">	created()&#123;组件被创建&#125;,</span><br><span class="line">	attached()&#123;组件被添加到页面&#125;,</span><br><span class="line">	ready()&#123;被渲染出来&#125;,</span><br><span class="line">	moved()&#123;节点被移动(不懂是不是dom？)&#125;,</span><br><span class="line">	detached()&#123;被移出(<span class="keyword">if</span>/节点被删了)&#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>爹的生命周期</strong></p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">pageLifetimes:&#123;</span><br><span class="line">	show()&#123;页面显示&#125;,</span><br><span class="line">	hide()&#123;隐藏&#125;,</span><br><span class="line">	resize()&#123;手机大小/尺寸变化&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="小程序登录流程"><a href="#小程序登录流程" class="headerlink" title="小程序登录流程"></a>小程序登录流程</h2><ul>
+<li><p>前端获取code(5分钟失效)传给node服务器</p>
+</li>
+<li><p>node将code+appid+appsecret发给微信官方接口换取session_key+openid(wx用户唯一标识)</p>
+</li>
+<li><p>node服务器判断数据库有无用户=&gt;分情况登录=&gt;将状态返回给小程序前端</p>
+</li>
+</ul>
+<p><img src="/2020/04/15/%E5%B0%8F%E7%A8%8B%E5%BA%8F%E7%AC%94%E8%AE%B0/login.jpg" alt="login"></p>
+<p>小程序部分</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">wx.login(&#123;<span class="comment">//官方api</span></span><br><span class="line">      success: <span class="function"><span class="params">res</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="comment">// 发送 res.code 到后台换取 openId, sessionKey, </span></span><br><span class="line">		getLogin(res.code).then(<span class="function"><span class="params">res</span>=&gt;</span>&#123; <span class="comment">//node接口方法&#125;)</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;)</span><br></pre></td></tr></table></figure>
+
+<p>node部分</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">router.post(<span class="string">'/mp/login'</span>, (req, res) =&gt; &#123;</span><br><span class="line">	<span class="comment">// query请求格式  </span></span><br><span class="line">	<span class="keyword">const</span> queryStr=<span class="string">`appid=<span class="subst">$&#123;WxCfg.appId&#125;</span>&amp;secret=<span class="subst">$&#123;WxCfg.appSecret&#125;</span>&amp;js_code=<span class="subst">$&#123;req.body.code&#125;</span>&amp;grant_type=authorization_code`</span></span><br><span class="line">	<span class="comment">// wx请求LOgin 的api</span></span><br><span class="line">	<span class="keyword">const</span> wxApi=<span class="string">`https://api.weixin.qq.com/sns/jscode2session?<span class="subst">$&#123;queryStr&#125;</span>`</span></span><br><span class="line">	request(wxApi, (err, response, body) =&gt; &#123;</span><br><span class="line">    <span class="keyword">if</span>(err) <span class="keyword">return</span> res.status(<span class="number">500</span>).json(&#123;&#125;);</span><br><span class="line">    <span class="keyword">const</span> data = <span class="built_in">JSON</span>.parse(body);</span><br><span class="line">	<span class="keyword">const</span> openid=data.openid</span><br><span class="line">	Users.findOne(&#123;openid&#125;).then(<span class="function"><span class="params">user</span>=&gt;</span>&#123;</span><br><span class="line">		<span class="keyword">if</span>(user)&#123;</span><br><span class="line">			req.session.userId = user._id</span><br><span class="line">			<span class="keyword">return</span> res.status(<span class="number">200</span>).send(<span class="string">'登录成功'</span>)</span><br><span class="line">		&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">			<span class="keyword">const</span> newUser=<span class="keyword">new</span> Users()</span><br><span class="line">			newUser.openid=openid</span><br><span class="line">			newUser.username= <span class="string">"微信"</span> + <span class="keyword">this</span>.randomCode(<span class="number">2</span>) <span class="comment">//随机名字</span></span><br><span class="line">			newUser.save()</span><br><span class="line">			<span class="keyword">return</span> res.status(<span class="number">200</span>).send(<span class="string">'首次登录，注册成功'</span>)</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;).catch(<span class="function"><span class="params">err</span>=&gt;</span>&#123;&#125;)</span><br><span class="line"> </span><br><span class="line">  &#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+
           
         
       
